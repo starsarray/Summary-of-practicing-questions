@@ -77,3 +77,26 @@
 ### 分组背包
 
 同一组内的物品至多/恰好选一个
+
+***
+
+## 滑动窗口与双指针
+
+### 定长
+
+**入-更新-出**
+
+```c++
+int maxVowels(string s, int k) {
+    int ans = 0,vowel = 0;
+    for(int i = 0;i < s.length();i++){
+        if(s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u')vowel++; //添加元素进入窗口
+        ans = max(ans,vowel); //更新答案
+        if(i<k-1)continue; // 窗口未满跳过移除窗口内元素
+        char out = s[i-k+1];
+        if(out == 'a'||out == 'e'||out == 'i'||out == 'o'||out == 'u')vowel--;// 移除元素
+    }
+    return ans;
+}
+```
+
